@@ -1,8 +1,8 @@
-# cadence-samples
+## cadence-samples
 
 This repository holds samples of workflows and activities written in .NET for the Uber Cadence platform.  These have been tested on Windows and Mac OS/X using Visual Studio.  We'll have you run these workflows against Cadence/Cassandra running locally as a Docker container.
 
-## Requirements
+### Requirements
 
 You'll need a computer configured like:
 
@@ -14,7 +14,7 @@ You'll need a computer configured like:
 
 Note that you'll need to enable Hyper-V for Windows because Docker requires it.  The Docker installation link explains how to accomplish this.
 
-## Configuring Windows
+### Configuring Windows
 
 1. Download and install **Visual Studio 2019**.  The **Community Edition** works fine and is free for most users, but any edition will work:
 
@@ -45,7 +45,7 @@ Note that you'll need to enable Hyper-V for Windows because Docker requires it. 
    ```
    The image is about 500MB so this may take some time to download.
 
-## Remarks
+### Remarks
 
 You may be able to adjust the Docker RAM allocation lower.  We encountered stablity issues with the default 2GB allocation and doubled this to 4GB for our purposes with good results.  There needs to be enough RAM to run the Docker Linux distribution along with the Cadence and Cassandra services.
 
@@ -53,7 +53,7 @@ On Windows, Docker always consumes the configured RAM, even if it's not actually
 
 The current Docker on Windows implementation is hack compared to how Docker works natively on Linux and OS/X.  **Windows Docker is somewhat unstable** and we find it can lose network connectivity every few days.  Image pulls and image builds will fail and executing containers will be unable to establish network connections.  You can mitigate this by **right-clicking** on the Docker icon in the system tray and selecting **Restart...*  Docker is working on new implementation that takes advantage of the Windows Subsystem for Linux (WSL) which will eventually address these disavantages.
 
-## Configuring Macintosh
+### Configuring Macintosh
 
 1. Download and install **Visual Studio 2019 for Mac**:
 
@@ -69,7 +69,7 @@ The current Docker on Windows implementation is hack compared to how Docker work
    ```
    The image is about 500MB so this may take some time to download.
 
-# Cadence Docker image: nforgeio/cadence-dev
+## Cadence Docker image: nforgeio/cadence-dev
 
 We've published the [nforgeio/cadence-dev](https://hub.docker.com/repository/docker/nkubeio/cadence-dev) Docker image to be an easy way to spin up a fully functional Cadence server including the Cadence UX portal and a dedicated Cassandra databaser server node.
 
