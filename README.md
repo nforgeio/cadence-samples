@@ -77,14 +77,16 @@ This container is very easy to manually manage from the command line:
 ```
 # This command starts a cadence container named: cadence
 #
-# The container will listen on all workstation network interfaces using the standard Cadence and Cassandra ports:
+# The container will listen on all workstation network interfaces using 
+# the standard Cadence and Cassandra ports:
 #
 #       Cadence:   7933,7934,7935,7939
 #       Cassandra: 9042
 
 docker run --detach --name cadence nforgeio/cadence-dev
 
-# This command stops and removes the Cadence container.  Note that you'll lose any data persisted to Cassandra:
+# This command stops and removes the Cadence container.  Note that 
+# you'll lose any data persisted to Cassandra:
 
 docker rm --force --name cadence
 ```
