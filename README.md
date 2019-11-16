@@ -45,7 +45,7 @@ Note that you'll need to enable Hyper-V for Windows because Docker requires it. 
    ```
    The image is about 500MB so this may take some time to download.
 
-##* Remarks
+## Remarks
 
 You may be able to adjust the Docker RAM allocation lower.  We encountered stablity issues with the default 2GB allocation and doubled this to 4GB for our purposes with good results.  There needs to be enough RAM to run the Docker Linux distribution along with the Cadence and Cassandra services.
 
@@ -55,11 +55,45 @@ The current Docker on Windows implementation is hack compared to how Docker work
 
 ## Configuring Macintosh
 
-1. Download and install *Visual Studio 2019 for Mac**:
+1. Download and install **Visual Studio 2019 for Mac**:
 
    [https://visualstudio.microsoft.com/vs/mac/](https://visualstudio.microsoft.com/vs/mac/)
 
 2. Install **Docker for Mac**:
 
    https://docs.docker.com/docker-for-mac/install/
+
+3. Open a terminal window and Open a command window and pull the Docker container image we'll be using host the Cadence service. This image bundles a recent version of Cadence along with Cassandra making it easy to quickly deploy Cadence locally for development and testing purposes.
+   ```
+   docker pull nkubeio/cadence-dev:latest
+   ```
+   The image is about 500MB so this may take some time to download.
+
+# Cadence Docker image: nforgeio/cadence-dev
+
+We've published the [nforgeio/cadence-dev](https://hub.docker.com/repository/docker/nkubeio/cadence-dev) Docker image to be an easy way to spin up a fully functional Cadence server including the Cadence UX portal and a dedicated Cassandra databaser server node.
+
+This container is very easy to manually manage from the command line:
+```
+# This command starts a cadence container named: cadence
+#
+# The container will listen on all workstation network interfaces using the standard Cadence and Cassandra ports:
+#
+#       Cadence:   7933,7934,7935,7939
+#       Cassandra: 9042
+
+docker run --detach --name cadence nforgeio/cadence-dev
+
+# This command stops and removes the Cadence container.  Note that you'll lose any data persisted to Cassandra:
+
+docker rm --force --name cadence
+```
+
+Once Cadence has started, you can view its portal via: [http://localhost:7933](http://localhost:7933)
+
+# CadenceFixture: Easy Cadence unit testing
+
+For those of you using [Xunit](https://github.com/xunit/xunit) for unit testing, we make the [CadenceFixture](https://doc.neonkube.com/T_Neon_Xunit_Cadence_CadenceFixture.htm) test fixture available.  Add this to your unit tests to automatically spin up a local Cadence server instance while your tests are running.
+
+This repository includes examples demonstrating how to do this.
 
