@@ -11,9 +11,41 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{8513A0
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-workflow", "hello\hello-workflow\hello-workflow.csproj", "{84C58BC6-D3B2-4168-9533-B4B2276D54B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hello", "Hello", "{DA12DD7E-A12A-41C6-B6F7-525531C9941C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-activity", "Hello\hello-activity\hello-activity.csproj", "{3207085E-2D9F-4245-BDB7-F5694777F9E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hello-localactivity", "Hello\hello-localactivity\hello-localactivity.csproj", "{D3AE8239-2B07-4B41-A993-3AA76DEC3015}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{84C58BC6-D3B2-4168-9533-B4B2276D54B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84C58BC6-D3B2-4168-9533-B4B2276D54B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84C58BC6-D3B2-4168-9533-B4B2276D54B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84C58BC6-D3B2-4168-9533-B4B2276D54B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3207085E-2D9F-4245-BDB7-F5694777F9E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3207085E-2D9F-4245-BDB7-F5694777F9E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3207085E-2D9F-4245-BDB7-F5694777F9E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3207085E-2D9F-4245-BDB7-F5694777F9E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{84C58BC6-D3B2-4168-9533-B4B2276D54B3} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
+		{DA12DD7E-A12A-41C6-B6F7-525531C9941C} = {8513A063-1C1A-45E9-A3C8-05BB32325164}
+		{3207085E-2D9F-4245-BDB7-F5694777F9E3} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
+		{D3AE8239-2B07-4B41-A993-3AA76DEC3015} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F03BC1A-A113-47D4-AB21-96902B6F1AEA}

@@ -69,9 +69,9 @@ The current Docker on Windows implementation is hack compared to how Docker work
    ```
    The image is about 500MB so this may take some time to download.
 
-## Cadence Docker image: nforgeio/cadence-dev
+## Cadence Docker image: nkubeio/cadence-dev
 
-We've published the [nforgeio/cadence-dev](https://hub.docker.com/repository/docker/nkubeio/cadence-dev) Docker image to be an easy way to spin up a fully functional Cadence server including the Cadence UX portal and a dedicated Cassandra databaser server node.
+We've published the [nkubeio/cadence-dev](https://hub.docker.com/repository/docker/nkubeio/cadence-dev) Docker image to be an easy way to spin up a fully functional Cadence server including the Cadence UX portal and a dedicated Cassandra databaser server node.
 
 This container is very easy to manually manage from the command line:
 ```
@@ -80,22 +80,21 @@ This container is very easy to manually manage from the command line:
 # The container will listen on all workstation network interfaces using 
 # the standard Cadence and Cassandra ports:
 #
-#       Cadence:   7933,7934,7935,7939
+#       Cadence:   7933,7934,7935,7939, 8088 (the portal)
 #       Cassandra: 9042
 
-docker run --detach --name cadence nforgeio/cadence-dev
+docker run --detach --name cadence-dev -p 7933-7939:7933-7939 -p 8088:8088 nkubeio/cadence-dev
 
 # This command stops and removes the Cadence container.  Note that 
 # you'll lose any data persisted to Cassandra:
 
-docker rm --force --name cadence
+docker rm --force cadence-dev
 ```
 
-Once Cadence has started, you can view its portal via: [http://localhost:7933](http://localhost:7933)
+Note that it takes Cadence and Cassandra a few seconds to initialize.  Once Cadence has started, you can view its portal via: [http://localhost:8088](http://localhost:8088)
 
-# CadenceFixture: Easy Cadence unit testing
+## CadenceFixture: Easy Cadence unit testing
 
 For those of you using [Xunit](https://github.com/xunit/xunit) for unit testing, we make the [CadenceFixture](https://doc.neonkube.com/T_Neon_Xunit_Cadence_CadenceFixture.htm) test fixture available.  Add this to your unit tests to automatically spin up a local Cadence server instance while your tests are running.
 
 This repository includes examples demonstrating how to do this.
-
