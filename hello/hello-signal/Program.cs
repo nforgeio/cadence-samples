@@ -16,9 +16,8 @@
 // limitations under the License.
 
 //-----------------------------------------------------------------------------
-// This sample demonstrates how to write a very simple workflow and activity,
-// register then with Cadence.  Then we'll execute the workflow which calls
-// the activity and then the workflow returns the activity result.
+// This sample demonstrates how to write a very simple workflow that waits for
+// signal and then returns a result that includes the signal value.
 //
 // Requirements:
 // -------------
@@ -41,37 +40,33 @@ using Neon.Cadence;
 
 namespace hello_workflow
 {
-    [ActivityInterface(TaskList = "hello-tasks")]
-    public interface IHelloActivity : IActivity
-    {
-        [ActivityMethod]
-        Task<string> HelloAsync(string name);
-    }
-
-    [Activity(AutoRegister = true)]
-    public class HelloActivity : ActivityBase, IHelloActivity
-    {
-        public async Task<string> HelloAsync(string name)
-        {
-            return await Task.FromResult($"Hello {name}!");
-        }
-    }
-
     [WorkflowInterface(TaskList = "hello-tasks")]
     public interface IHelloWorkflow : IWorkflow
     {
         [WorkflowMethod]
-        Task<string> HelloAsync(string name);
+        Task<string> HelloAsync();
+
+        [SignalMethod("signal-name")]
+        Task SignalNameAsync(string name);
     }
 
     [Workflow(AutoRegister = true)]
     public class HelloWorkflow : WorkflowBase, IHelloWorkflow
     {
-        public async Task<string> HelloAsync(string name)
-        {
-            var stub = Workflow.NewActivityStub<IHelloActivity>();
+        private WorkflowQueue<string>   signalQueue;
 
-            return await stub.HelloAsync(name);
+        public async Task<string> HelloAsync()
+        {
+            signalQueue = await Workflow.NewQueueAsync<string>();
+
+            var name = await signalQueue.DequeueAsync();
+
+            return $"Hello {name}!";
+        }
+
+        public async Task SignalNameAsync(string name)
+        {
+            await signalQueue.EnqueueAsync(name);
         }
     }
 
@@ -90,8 +85,12 @@ namespace hello_workflow
                 await client.RegisterAssemblyAsync(Assembly.GetExecutingAssembly());
                 await client.StartWorkerAsync(taskList: "hello-tasks");
 
-                var stub   = client.NewWorkflowStub<IHelloWorkflow>();
-                var result = await stub.HelloAsync("Sally");
+                var stub   = client.NewWorkflowFutureStub<IHelloWorkflow>();
+                var future = await stub.StartAsync<string>();
+
+                await stub.SignalAsync("signal-name", "Sally");
+
+                var result = await future.GetAsync();
 
                 Console.WriteLine($"RESULT: {result}");
             }

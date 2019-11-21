@@ -51,7 +51,6 @@ namespace hello_workflow
     [Activity(AutoRegister = true)]
     public class HelloActivity : ActivityBase, IHelloActivity
     {
-        [ActivityMethod]
         public async Task<string> HelloAsync(string name)
         {
             return await Task.FromResult($"Hello {name}!");
@@ -68,7 +67,6 @@ namespace hello_workflow
     [Workflow(AutoRegister = true)]
     public class HelloWorkflow : WorkflowBase, IHelloWorkflow
     {
-        [WorkflowMethod]
         public async Task<string> HelloAsync(string name)
         {
             var stub = Workflow.NewLocalActivityStub<IHelloActivity, HelloActivity>();

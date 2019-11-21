@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "hello-activity", "Hello\hel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hello-localactivity", "Hello\hello-localactivity\hello-localactivity.csproj", "{D3AE8239-2B07-4B41-A993-3AA76DEC3015}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hello-signal", "Hello\hello-signal\hello-signal.csproj", "{002B416A-CFF6-47FE-834C-6F83E859234B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hello-childworkflow", "Hello\hello-childworkflow\hello-childworkflow.csproj", "{8249288B-4421-474E-BA9B-8FDB722778D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +41,14 @@ Global
 		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3AE8239-2B07-4B41-A993-3AA76DEC3015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002B416A-CFF6-47FE-834C-6F83E859234B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002B416A-CFF6-47FE-834C-6F83E859234B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002B416A-CFF6-47FE-834C-6F83E859234B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002B416A-CFF6-47FE-834C-6F83E859234B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8249288B-4421-474E-BA9B-8FDB722778D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8249288B-4421-474E-BA9B-8FDB722778D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8249288B-4421-474E-BA9B-8FDB722778D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8249288B-4421-474E-BA9B-8FDB722778D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +58,8 @@ Global
 		{DA12DD7E-A12A-41C6-B6F7-525531C9941C} = {8513A063-1C1A-45E9-A3C8-05BB32325164}
 		{3207085E-2D9F-4245-BDB7-F5694777F9E3} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
 		{D3AE8239-2B07-4B41-A993-3AA76DEC3015} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
+		{002B416A-CFF6-47FE-834C-6F83E859234B} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
+		{8249288B-4421-474E-BA9B-8FDB722778D7} = {DA12DD7E-A12A-41C6-B6F7-525531C9941C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F03BC1A-A113-47D4-AB21-96902B6F1AEA}

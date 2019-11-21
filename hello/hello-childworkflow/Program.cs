@@ -41,15 +41,15 @@ using Neon.Cadence;
 
 namespace hello_workflow
 {
-    [ActivityInterface(TaskList = "hello-tasks")]
-    public interface IHelloActivity : IActivity
+    [WorkflowInterface(TaskList = "hello-tasks")]
+    public interface IHelloChildWorkflow : IWorkflow
     {
-        [ActivityMethod]
+        [WorkflowMethod]
         Task<string> HelloAsync(string name);
     }
 
-    [Activity(AutoRegister = true)]
-    public class HelloActivity : ActivityBase, IHelloActivity
+    [Workflow(AutoRegister = true)]
+    public class HelloChildWorkflow : WorkflowBase, IHelloChildWorkflow
     {
         public async Task<string> HelloAsync(string name)
         {
@@ -69,7 +69,7 @@ namespace hello_workflow
     {
         public async Task<string> HelloAsync(string name)
         {
-            var stub = Workflow.NewActivityStub<IHelloActivity>();
+            var stub = Workflow.NewChildWorkflowStub<IHelloChildWorkflow>();
 
             return await stub.HelloAsync(name);
         }
