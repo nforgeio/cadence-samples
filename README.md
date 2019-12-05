@@ -63,7 +63,13 @@ The current Docker on Windows implementation is hack compared to how Docker work
 
    https://docs.docker.com/docker-for-mac/install/
 
-3. Open a terminal window and Open a command window and pull the Docker container image we'll be using host the Cadence service. This image bundles a recent version of Cadence along with Cassandra making it easy to quickly deploy Cadence locally for development and testing purposes.
+3. Increase Docker CPUs to 4 and RAM allocation to 4GB.
+
+   a. **Right-click the Docker icon** in your system tray and select **Settings**
+   b. Click **Advanced** on the left and then drag the **CPU slider to 4** and the **Memory slider to 4096**
+   c. Click **Apply**
+
+4. Open a terminal window and Open a command window and pull the Docker container image we'll be using host the Cadence service. This image bundles a recent version of Cadence along with Cassandra making it easy to quickly deploy Cadence locally for development and testing purposes.
    ```
    docker pull nkubeio/cadence-dev:latest
    ```
@@ -83,7 +89,7 @@ This container is very easy to manually manage from the command line:
 #       Cadence:   7933,7934,7935,7939, 8088 (the portal)
 #       Cassandra: 9042
 
-docker run --detach --name cadence-dev -p 7933-7939:7933-7939 -p 8088:8088 nkubeio/cadence-dev
+docker run --detach --name cadence-dev -p 7933-7939:7933-7939 -p 8088:8088 nkubeio/cadence-dev:latest
 
 # This command stops and removes the Cadence container.  Note that 
 # you'll lose any data persisted to Cassandra:
