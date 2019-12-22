@@ -97,7 +97,7 @@ docker run --detach --name cadence-dev -p 7933-7939:7933-7939 -p 8088:8088 nkube
 docker rm --force cadence-dev
 ```
 
-Note that it takes Cadence and Cassandra a few seconds to initialize.  Once Cadence has started, you can view its portal via: [http://localhost:8088](http://localhost:8088)
+Note that it takes Cadence and Cassandra a several seconds to initialize.  Once Cadence has started, you can view its portal via: [http://localhost:8088](http://localhost:8088)
 
 ## CadenceFixture: Easy Cadence unit testing
 
