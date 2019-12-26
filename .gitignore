@@ -84,3 +84,6 @@ wwwroot/
 
 **/bin/**
 **/obj/**
+
+# OS/X related files
+.DS_Store
