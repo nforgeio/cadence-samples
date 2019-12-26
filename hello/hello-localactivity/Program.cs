@@ -79,21 +79,31 @@ namespace hello_workflow
     {
         public static async Task Main(string[] args)
         {
-            var settings = new CadenceSettings("cadence://localhost:7933")
+            try
             {
-                DefaultDomain = "test-domain",
-                CreateDomain  = true
-            };
+                var settings = new CadenceSettings("cadence://localhost:7933")
+                {
+                    DefaultDomain = "test-domain",
+                    CreateDomain  = true
+                };
 
-            using (var client = await CadenceClient.ConnectAsync(settings))
+                using (var client = await CadenceClient.ConnectAsync(settings))
+                {
+                    await client.RegisterAssemblyAsync(Assembly.GetExecutingAssembly());
+                    await client.StartWorkerAsync(taskList: "hello-tasks");
+
+                    var stub = client.NewWorkflowStub<IHelloWorkflow>();
+                    var result = await stub.HelloAsync("Sally");
+
+                    Console.WriteLine($"RESULT: {result}");
+                }
+            }
+            catch (ConnectException)
             {
-                await client.RegisterAssemblyAsync(Assembly.GetExecutingAssembly());
-                await client.StartWorkerAsync(taskList: "hello-tasks");
-
-                var stub   = client.NewWorkflowStub<IHelloWorkflow>();
-                var result = await stub.HelloAsync("Sally");
-
-                Console.WriteLine($"RESULT: {result}");
+                Console.Error.WriteLine("Cannot connect to Cadence.  Be sure you've started a");
+                Console.Error.WriteLine("local Cadence Docker container via:");
+                Console.Error.WriteLine();
+                Console.Error.WriteLine("docker run --detach --name cadence-dev -p 7933-7939:7933-7939 -p 8088:8088 nkubeio/cadence-dev");
             }
         }
     }
