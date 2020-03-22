@@ -17,7 +17,19 @@
 
 //-----------------------------------------------------------------------------
 // This sample demonstrates how to write a very simple workflow that waits for
-// signal and then returns a result that includes the signal value.
+// signal and then returns a result that includes a signal argument value.  This
+// is a somewhat contrived example that demonstrates how a signal method can use
+// a WorkflowQueue to marshal a received signal to workflow method logic.
+//
+// An alternative approach would be to have the signal method set a workflow
+// instance field and then have the workflow logic implement a polling loop
+// to wait for this field to be updated by the signal method.
+// 
+// Note that normal Cadence signals are fire-and-forget and cannot return a
+// value to the caller.  The Neon.Cadence library does include experimental
+// support for synchronos signals that don't return to the caller until the
+// signal has been processed and these synchronous signals may return a result.
+// See the hello-syncsignal project for an example.
 //
 // Requirements:
 // -------------
@@ -46,7 +58,7 @@ namespace hello_workflow
         [WorkflowMethod]
         Task<string> HelloAsync();
 
-        [SignalMethod("signal-name")]
+        [SignalMethod("signal")]
         Task SignalNameAsync(string name);
     }
 
@@ -87,7 +99,7 @@ namespace hello_workflow
                     await client.RegisterAssemblyAsync(Assembly.GetExecutingAssembly());
                     await client.StartWorkerAsync(taskList: "hello-tasks");
 
-                    var stub = client.NewWorkflowFutureStub<IHelloWorkflow>();
+                    var stub   = client.NewWorkflowFutureStub<IHelloWorkflow>();
                     var future = await stub.StartAsync<string>();
 
                     await stub.SignalAsync("signal-name", "Sally");
