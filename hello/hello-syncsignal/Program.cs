@@ -176,8 +176,8 @@ namespace hello_workflow
     }
 
     //-------------------------------------------------------------------------
-    // This implements a contrived order processing workflow with a uses
-    // a workflow queue to marshal a cancellation signal into the workflow
+    // This implements a contrived order processing workflow that uses a
+    // workflow queue to marshal a cancellation signal into the workflow
     // logic.
 
     [WorkflowInterface(TaskList = "hello-tasks")]
@@ -205,7 +205,7 @@ namespace hello_workflow
     }
 
     [Workflow(AutoRegister = true)]
-    public class OrderWorkflow2 : WorkflowBase, IOrderWorkflow1
+    public class OrderWorkflow2 : WorkflowBase, IOrderWorkflow2
     {
         private enum OrderStatus
         {
