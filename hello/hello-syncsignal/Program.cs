@@ -115,7 +115,7 @@ namespace hello_workflow
             // We're going to leave this to your imagination to keep the
             // example simple.
 
-            await Workflow.SleepAsync(TimeSpan.FromSeconds(5));
+            await Workflow.SleepAsync(TimeSpan.FromSeconds(10));
 
             // Abort order processing if an cancellation signal has been
             // received.
@@ -134,7 +134,7 @@ namespace hello_workflow
             // your packers what to do as well as printing labels and ordering
             // a pickup from your shipper.
 
-            await Workflow.SleepAsync(TimeSpan.FromSeconds(5));
+            await Workflow.SleepAsync(TimeSpan.FromSeconds(10));
 
             // Abort order processing if an cancellation signal has been
             // received.
@@ -380,7 +380,7 @@ namespace hello_workflow
                     //-------------------------------------
                     // Submit an order to: IOrderWorkflow2
 
-                    var stub2      = client.NewWorkflowStub<IOrderWorkflow1>();
+                    var stub2      = client.NewWorkflowStub<IOrderWorkflow2>();
                     var orderTask2 = stub2.ProcessAsync();
 
                     // Attempt to cancel it via a synchronous signal.
