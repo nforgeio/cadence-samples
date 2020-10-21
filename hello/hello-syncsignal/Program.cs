@@ -115,7 +115,7 @@ namespace hello_workflow
             // We're going to leave this to your imagination to keep the
             // example simple.
 
-            await Workflow.SleepAsync(TimeSpan.FromSeconds(10));
+            await Workflow.SleepAsync(TimeSpan.FromSeconds(5));
 
             // Abort order processing if an cancellation signal has been
             // received.
@@ -134,7 +134,7 @@ namespace hello_workflow
             // your packers what to do as well as printing labels and ordering
             // a pickup from your shipper.
 
-            await Workflow.SleepAsync(TimeSpan.FromSeconds(10));
+            await Workflow.SleepAsync(TimeSpan.FromSeconds(5));
 
             // Abort order processing if an cancellation signal has been
             // received.
